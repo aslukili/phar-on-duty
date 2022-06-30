@@ -18,4 +18,4 @@ Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index']);
 
 
 //pharmacies operations
-Route::get('/pharmacies', [\App\Http\Controllers\PharmaciesController::class, 'index']);
+Route::get('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'index']);
