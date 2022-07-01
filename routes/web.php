@@ -19,3 +19,9 @@ Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index']);
 
 //pharmacies operations
 Route::get('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'index']);
+
+
+//cities operations
+Route::get('/villes', [\App\Http\Controllers\CityController::class, 'index']);
+Route::post('/villes', [\App\Http\Controllers\CityController::class, 'store']);
+
