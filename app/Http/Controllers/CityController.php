@@ -11,7 +11,7 @@ class CityController extends Controller
     {
         return view('villes.index',[
             'title' => 'toutes les villes',
-            'cities' => City::latest()->filter(\request(['search']))->paginate()
+            'cities' => City::latest()->filter(\request(['search']))->paginate(12)
         ]);
     }
 

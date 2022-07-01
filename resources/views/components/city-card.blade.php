@@ -6,6 +6,6 @@
     </h3>
     <div class="text-lg mb-1.5">
         <p>pharmacies totales</p>
-        <span class="font-bold text-xl">35</span>
+        <span class="font-bold text-xl">{{$city->pharmacies()}}</span>
     </div>
 </div>

@@ -37,6 +37,9 @@
                             <p>no cities found</p>
                         @endunless
                     </div>
+                    <div class="mt-6 p-4">
+                        {{$cities->links()}}
+                    </div>
                 </div>
 {{--                modal for add city--}}
                 <div id="defaultModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
@@ -56,7 +59,7 @@
                                 <input type="text" id="name" name="name" aria-describedby="helper-text-explanation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="example: Tanger">
                                 <div class="flex items-center p-1.5 space-x-2 rounded-b">
                                     <button data-modal-toggle="defaultModal" type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Ajouter</button>
-                                    <div data-modal-toggle="defaultModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">Annuler</div>
+                                    <div data-modal-toggle="defaultModal" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">Annuler</div>
                                 </div>
                             </form>
                         </div>

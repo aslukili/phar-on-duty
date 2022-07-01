@@ -19,6 +19,10 @@ Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index']);
 
 //pharmacies operations
 Route::get('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'index']);
+Route::get('/pharmacies/create', [\App\Http\Controllers\PharmacyController::class, 'create']);
+Route::post('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'store']);
+Route::delete('/pharmacies/{pharmacy}', [\App\Http\Controllers\PharmacyController::class, 'destroy']);
+
 
 
 //cities operations
