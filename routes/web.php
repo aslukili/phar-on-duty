@@ -24,6 +24,12 @@ Route::post('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'st
 Route::delete('/pharmacies/{pharmacy}', [\App\Http\Controllers\PharmacyController::class, 'destroy']);
 
 
+// pharmacie de gard
+Route::get('/pharmacie-de-gard', [\App\Http\Controllers\GuardPharmacyController::class, 'index']);
+Route::get('/pharmacie-de-gard/create', [\App\Http\Controllers\GuardPharmacyController::class, 'create']);
+Route::post('/pharmacie-de-gard', [\App\Http\Controllers\GuardPharmacyController::class, 'store']);
+
+
 
 //cities operations
 Route::get('/villes', [\App\Http\Controllers\CityController::class, 'index']);

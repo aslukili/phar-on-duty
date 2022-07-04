@@ -26,7 +26,6 @@
                                 Ajouter pharmacie
                             </a>
                         </div>
-
                     </div>
                     <div class="max-w-full overflow-x-auto px-3 mt-7">
                         @unless(count($pharmacies) == 0)
