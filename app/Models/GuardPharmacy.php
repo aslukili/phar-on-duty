@@ -11,4 +11,11 @@ class GuardPharmacy extends Model
 
     protected $fillable = ['city_name_fk', 'pharmacy_fk', 'open_time', 'close_time'];
 
+
+
+
+    public function pharmacy()
+    {
+        return $this->belongsTo(Pharmacy::class);
+    }
 }

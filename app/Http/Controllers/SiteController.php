@@ -13,6 +13,7 @@ class SiteController extends Controller
         return view('home',[
             'title' => 'pharmcien de guard',
             'pharmacies' => Pharmacy::all(),
+
         ]);
     }
 }
