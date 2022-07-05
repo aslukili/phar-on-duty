@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\GuardPharmacy;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GuardPharmacyController extends Controller
 {
@@ -13,7 +14,7 @@ class GuardPharmacyController extends Controller
     {
         return view('pharmacies-de-gard.index',[
             'title' => 'Les pharmacies de gard',
-            'pharmacies' => Pharmacy::latest()->filter(\request(['search']))->paginate(16),
+            'pharmacies' => GuardPharmacy::all(),
         ]);
     }
 
@@ -36,5 +37,11 @@ class GuardPharmacyController extends Controller
         ]);
         GuardPharmacy::create($formFields);
         return redirect('/pharmacie-de-gard')->with('message', 'Pharmacy added successfully!');
+    }
+
+    public function destroy(GuardPharmacy $guardPharmacy)
+    {
+        $guardPharmacy->delete();
+        return redirect('/pharmacie-de-gard')->with('message', 'pharmacy deleted');
     }
 }

@@ -19,13 +19,10 @@ class Pharmacy extends Model
         }
     }
 
-
-
     public function guardPharmacy()
     {
-        return $this->hasOne(GuardPharmacy::class, 'pharmacy_fk', 'id');
+        return $this->belongsTo(GuardPharmacy::class);
     }
-
 
     public function city()
     {

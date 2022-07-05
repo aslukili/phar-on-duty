@@ -26,6 +26,49 @@
                             </a>
                         </div>
                     </div>
+                    <div class="max-w-full overflow-x-auto px-3 mt-7">
+                        @unless(count($pharmacies) == 0)
+                            <table class="border-b table-auto w-full m-auto bg-gray-100 text-lg text-left text-gray-900 shadow-lg shadow-b-xl">
+                                <thead class="bg-green-100">
+                                <tr>
+                                    <th class="border-r p-3">Ville</th>
+                                    <th class="border-r p-3">Nom de la pharmacie</th>
+                                    <th class="border-r p-3">Telephone</th>
+                                    <th class="border-r p-3">ouvrir</th>
+                                    <th class="border-r p-3">Fermer</th>
+                                    <th class="border-r p-3">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-sm">
+                                @foreach($pharmacies as $pharmacy)
+                                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="border-r p-2">{{$pharmacy->city_name_fk}}</td>
+                                        <td class="border-r p-2">{{$pharmacy->pharmacy->name_fr}}</td>
+                                        <td class="border-r p-2 text-green-800 font-bold"><a href="tel:{{$pharmacy->pharmacy->tel}}">{{$pharmacy->pharmacy->tel}}</a></td>
+                                        <td class="border-r p-2">{{$pharmacy->open_time}}</td>
+                                        <td class="border-r p-2">{{$pharmacy->close_time}}</td>
+                                        <td class="border-r p-2 flex justify-evenly">
+                                            <button class="bg-yellow-300 rounded px-3 py-1 mr-1" onclick="document.location.href='/pharmacies/?search={{$pharmacy->pharmacy->name_fr}}'">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                            <form method="POST" onsubmit="return confirm('are you sure?')" action="/pharmacie-de-gard/{{$pharmacy->id}}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="bg-red-500 rounded px-3 py-1 ml-1" type="submit">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <p class="text-lg text-red-500">no pharmacies found</p>
+                        @endunless
+                    </div>
                 </div>
             </div>
         </div>

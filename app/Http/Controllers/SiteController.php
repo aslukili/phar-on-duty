@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\GuardPharmacy;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
@@ -12,8 +13,8 @@ class SiteController extends Controller
     {
         return view('home',[
             'title' => 'pharmcien de guard',
-            'pharmacies' => Pharmacy::all(),
-
+            'pharmacies' => GuardPharmacy::latest()->filter(\request(['city']))->paginate(16),
+            'cities' => City::all(),
         ]);
     }
 }

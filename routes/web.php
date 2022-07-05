@@ -29,7 +29,7 @@ Route::delete('/pharmacies/{pharmacy}', [\App\Http\Controllers\PharmacyControlle
 Route::get('/pharmacie-de-gard', [\App\Http\Controllers\GuardPharmacyController::class, 'index']);
 Route::get('/pharmacie-de-gard/create', [\App\Http\Controllers\GuardPharmacyController::class, 'create']);
 Route::post('/pharmacie-de-gard', [\App\Http\Controllers\GuardPharmacyController::class, 'store']);
-
+Route::delete('/pharmacie-de-gard/{guardPharmacy}', [\App\Http\Controllers\GuardPharmacyController::class, 'destroy']);
 
 
 //cities operations
