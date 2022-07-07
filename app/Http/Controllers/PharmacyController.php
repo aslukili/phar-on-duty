@@ -33,7 +33,8 @@ class PharmacyController extends Controller
             'address_fr' => 'required',
             'city_name' => 'required',
             'map_link' => ['required', 'url', 'unique:pharmacies,map_link'],
-            'tel' => 'unique:pharmacies,tel'
+            'tel' => 'unique:pharmacies,tel',
+            'email' => ['email', 'unique:pharmacies,email']
         ]);
         Pharmacy::create($formFields);
         return redirect('/pharmacies')->with('message', 'Pharmacy added successfully!');

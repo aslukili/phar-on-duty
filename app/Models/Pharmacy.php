@@ -9,7 +9,7 @@ class Pharmacy extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name_ar', 'name_fr', 'address_ar', 'address_fr', 'tel', 'map_link', 'city_name'];
+    protected $fillable = ['name_ar', 'name_fr', 'address_ar', 'address_fr', 'tel', 'email', 'map_link', 'city_name'];
 
     public function scopeFilter($query, array $filters)
     {

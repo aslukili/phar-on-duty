@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('tel');
             $table->string('map_link');
             $table->string('city_name');
+            $table->string('email');
             $table->foreign('city_name')->references('name')->on('cities')->onDelete('CASCADE');
             $table->timestamps();
         });
