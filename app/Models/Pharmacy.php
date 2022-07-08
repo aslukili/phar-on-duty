@@ -17,6 +17,10 @@ class Pharmacy extends Model
             $query->where('name_fr', 'like', '%'.request('search').'%')
             ->orWhere('city_name', 'like', '%'.request('search').'%');
         }
+
+        if($filters['city'] ?? false) {
+            $query->where('city_name', '=', request('city'));
+        }
     }
 
     public function guardPharmacy()

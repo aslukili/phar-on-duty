@@ -15,6 +15,7 @@ class GuardPharmacyController extends Controller
         return view('pharmacies-de-gard.index',[
             'title' => 'Les pharmacies de gard',
             'pharmacies' => GuardPharmacy::all(),
+            'cities' => City::all()
         ]);
     }
 
@@ -22,8 +23,7 @@ class GuardPharmacyController extends Controller
     {
         return view('pharmacies-de-gard.create', [
             'title' => 'ajouter une pharmacie',
-            'cities' => City::all()->sortBy('name'),
-            'pharmacies' => Pharmacy::all()->sortBy('name_fr')
+            'pharmacies' => Pharmacy::latest()->filter(\request(['city']))->get(),
         ]);
     }
 
