@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+    public function redirect()
+    {
+        redirect('/?city=Tanger');
+        return $this->index();
+    }
+
     public function index()
     {
         return view('home',[
