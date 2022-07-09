@@ -6,13 +6,13 @@ use App\Models\City;
 use App\Models\GuardPharmacy;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class SiteController extends Controller
 {
-    public function redirect()
+    public function fromRoute()
     {
-        redirect('/?city=Tanger');
-        return $this->index();
+        return redirect()->route('/home', ['city' => 'Tanger']);
     }
 
     public function index()

@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 
-Route::get('/', [\App\Http\Controllers\SiteController::class, 'redirect']);
-//Route::view('/', '/home', ['city' => 'Tanger']);
+Route::get('/', [\App\Http\Controllers\SiteController::class, 'fromRoute'])->name('/call.from');
+Route::get('/home', [\App\Http\Controllers\SiteController::class, 'index'])->name('/home');
+
 
 
 //pharmacies operations
