@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//getting visitor location:
+Route::get('/user',[\App\Http\Controllers\UserController::class,'user']);
+
+
+
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'fromRoute'])->name('/call.from');

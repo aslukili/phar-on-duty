@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -30,8 +32,9 @@
             <div class="mt-7 bg-white lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
                 @unless(count($pharmacies) == 0)
                     @foreach($pharmacies as $pharmacy)
-                        @if(strtotime($pharmacy->close_time) > strtotime(date('Y-m-d')))
+                        @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
                             <x-pharmacy-card :pharmacy="$pharmacy"/>
+
                         @endif
                     @endforeach
                 @else
