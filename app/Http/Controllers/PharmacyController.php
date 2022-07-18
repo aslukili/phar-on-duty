@@ -10,9 +10,17 @@ class PharmacyController extends Controller
 {
     public function index()
     {
+        if (\request()->has('search')) {
+            return view('pharmacies.index',[
+                'title' => 'All Pharmacies',
+                'pharmacies' => Pharmacy::latest()
+                    ->filter(\request(['search']))->paginate(16),
+            ]);
+        }
         return view('pharmacies.index',[
             'title' => 'All Pharmacies',
-            'pharmacies' => Pharmacy::latest()->filter(\request(['search']))->paginate(16),
+            'pharmacies' => Pharmacy::all()
+                ->sortBy('city_name')
         ]);
     }
 
@@ -32,6 +40,7 @@ class PharmacyController extends Controller
             'address_ar' => 'required',
             'address_fr' => 'required',
             'city_name' => 'required',
+            'map_iframe' => 'required',
             'map_link' => ['required', 'url', 'unique:pharmacies,map_link'],
             'tel' => 'unique:pharmacies,tel',
             'email' => ['email', 'unique:pharmacies,email']

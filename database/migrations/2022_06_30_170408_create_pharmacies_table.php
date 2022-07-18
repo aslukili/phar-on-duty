@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('address_fr');
             $table->string('tel');
             $table->string('map_link');
+            $table->longText('map_iframe');
             $table->string('city_name');
             $table->string('email');
             $table->foreign('city_name')->references('name')->on('cities')->onDelete('CASCADE');

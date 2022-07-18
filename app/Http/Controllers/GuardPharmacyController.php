@@ -12,9 +12,17 @@ class GuardPharmacyController extends Controller
 {
     public function index()
     {
+        if (\request()->has('search')) {
+            return view('pharmacies-de-gard.index',[
+                'title' => 'Les pharmacies de gard',
+                'pharmacies' => GuardPharmacy::latest()->filter(\request(['city']))->paginate(16),
+                'cities' => City::all()
+            ]);
+        }
+
         return view('pharmacies-de-gard.index',[
             'title' => 'Les pharmacies de gard',
-            'pharmacies' => GuardPharmacy::all(),
+            'pharmacies' => GuardPharmacy::all()->sortBy('city_name_fk'),
             'cities' => City::all()
         ]);
     }

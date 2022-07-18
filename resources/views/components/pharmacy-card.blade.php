@@ -46,7 +46,7 @@
                             <p class="text-gray-700 text-right">{{$pharmacy->pharmacy->address_ar}}</p>
                         </div>
                         <div class="flex justify-center">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9116.336144090137!2d-5.809814931876154!3d35.77353879120224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0b80a828cf88f1%3A0xdb1b8caba6311fdc!2sPharmacy%20Sahat%20Aloumam!5e0!3m2!1sen!2sma!4v1657026330083!5m2!1sen!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <iframe src="{{$pharmacy->pharmacy->map_iframe}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                         <!-- call, map, partager -->
                         <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 ">
