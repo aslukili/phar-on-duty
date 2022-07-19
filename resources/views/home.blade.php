@@ -34,7 +34,6 @@
                     @foreach($pharmacies as $pharmacy)
                         @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
                             <x-pharmacy-card :pharmacy="$pharmacy"/>
-
                         @endif
                     @endforeach
                 @else

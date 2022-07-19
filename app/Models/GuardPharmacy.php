@@ -17,6 +17,10 @@ class GuardPharmacy extends Model
         if($filters['city'] ?? false) {
             $query->where('city_name_fk', 'like', '%'.request('city').'%');
         }
+        if($filters['city'] && $filters['date'] ?? false) {
+            $query->where('city_name_fk', 'like', '%'.request('city').'%')
+                ->where('open_time', 'like', '%'.request('date').'%');
+        }
     }
 
     public function pharmacy()

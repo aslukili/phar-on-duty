@@ -15,12 +15,22 @@ class PharmacyController extends Controller
                 'title' => 'All Pharmacies',
                 'pharmacies' => Pharmacy::latest()
                     ->filter(\request(['search']))->paginate(16),
+                'cities' => City::all()
+            ]);
+        }
+        if (\request()->has('city')) {
+            return view('pharmacies.index',[
+                'title' => 'All Pharmacies',
+                'pharmacies' => Pharmacy::latest()
+                    ->filter(\request(['city']))->paginate(16),
+                'cities' => City::all()
             ]);
         }
         return view('pharmacies.index',[
             'title' => 'All Pharmacies',
             'pharmacies' => Pharmacy::all()
-                ->sortBy('city_name')
+                ->sortBy('city_name'),
+            'cities' => City::all()
         ]);
     }
 

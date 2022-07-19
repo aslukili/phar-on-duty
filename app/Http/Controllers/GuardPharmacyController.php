@@ -12,10 +12,10 @@ class GuardPharmacyController extends Controller
 {
     public function index()
     {
-        if (\request()->has('search')) {
+        if (\request()->has('city') && \request()->has('date')) {
             return view('pharmacies-de-gard.index',[
                 'title' => 'Les pharmacies de gard',
-                'pharmacies' => GuardPharmacy::latest()->filter(\request(['city']))->paginate(16),
+                'pharmacies' => GuardPharmacy::latest()->filter(\request(['city', 'date']))->paginate(16),
                 'cities' => City::all()
             ]);
         }
