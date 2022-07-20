@@ -22,7 +22,8 @@ class GuardPharmacyController extends Controller
 
         return view('pharmacies-de-gard.index',[
             'title' => 'Les pharmacies de gard',
-            'pharmacies' => GuardPharmacy::all()->sortBy('city_name_fk'),
+            'pharmacies' => GuardPharmacy::where('open_time', 'like', '%'.date('Y-m-d').'%')->get(),
+//            'pharmacies' => GuardPharmacy::all()->sortBy('city_name_fk'),
             'cities' => City::all()
         ]);
     }

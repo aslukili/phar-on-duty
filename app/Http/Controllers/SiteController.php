@@ -7,6 +7,7 @@ use App\Models\GuardPharmacy;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller
 {
@@ -19,8 +20,10 @@ class SiteController extends Controller
     {
         return view('home',[
             'title' => 'pharmcien de guard',
-            'pharmacies' => GuardPharmacy::latest()->filter(\request(['city']))->paginate(16),
-            'cities' => City::all(),
+            'pharmacies' => GuardPharmacy::where('city_name_fk', 'like', '%'.request('city').'%')->get(),
+//            'pharmacies' => DB::table('guard_pharmacies')->where('city_name_fk', 'like', '%'.request('city').'%')->get(),
+//            'pharmacies' => GuardPharmacy::latest()->filter(\request(['city']))->paginate(16),
+            'cities' => City::all()->sortBy('name'),
         ]);
     }
 }
