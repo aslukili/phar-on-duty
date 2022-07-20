@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('city_name_fk');
             $table->foreign('city_name_fk')->references('city_name')->on('pharmacies');
-            $table->unsignedBigInteger('pharmacy_fk')->unique();
+            $table->unsignedBigInteger('pharmacy_fk');
             $table->foreign('pharmacy_fk')->references('id')->on('pharmacies')->onDelete('CASCADE');
             $table->dateTime('open_time')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->dateTime('close_time')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
