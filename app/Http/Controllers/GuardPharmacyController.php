@@ -7,6 +7,7 @@ use App\Models\GuardPharmacy;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class GuardPharmacyController extends Controller
 {
@@ -40,7 +41,11 @@ class GuardPharmacyController extends Controller
     {
         $formFields = $request->validate([
             'city_name_fk' => 'required',
-            'pharmacy_fk' => 'required',
+            'pharmacy_fk' => ['required',
+                Rule::unique('guard_pharmacies','pharmacy_fk')->where(function ($query) use ($request) {
+                    $query->where('open_time', $request->get('open_time'));
+                })
+            ],
             'open_time' => 'required',
             'close_time' => 'required',
         ]);
@@ -53,4 +58,10 @@ class GuardPharmacyController extends Controller
         $guardPharmacy->delete();
         return redirect('/pharmacie-de-gard')->with('message', 'pharmacy deleted');
     }
+
+//    public function delete()
+//    {
+//        DB::table('guard_pharmacies')->truncate();
+//        return redirect('/pharmacie-de-gard');
+//    }
 }

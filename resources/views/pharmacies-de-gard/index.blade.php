@@ -13,6 +13,7 @@
                             <span>sélectionner</span>
                             <form class="flex gap-3">
                                 <select name="city" id="city" class="block p-3 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                                    <option disabled selected hidden>ville</option>
                                     @foreach($cities as $city)
                                         <option id="{{$city->name}}" value="{{$city->name}}">{{$city->name}}</option>
                                     @endforeach
@@ -100,6 +101,7 @@
                             <p class="text-lg text-red-500">no pharmacies found</p>
                         @endunless
                     </div>
+{{--                    <a href="pharmacie-de-gard/delete-all" class="text-red-800">effacer toutes les données</a>--}}
                 </div>
             </div>
         </div>
