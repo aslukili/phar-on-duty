@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('city_admins', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
+            $table->string('full_name');
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
             // assigned cities (comma separated values)

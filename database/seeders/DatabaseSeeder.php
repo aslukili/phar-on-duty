@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CityAdmin;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        CityAdmin::factory(10)->create();
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

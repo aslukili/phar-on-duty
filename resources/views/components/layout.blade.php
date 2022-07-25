@@ -9,10 +9,15 @@
     <meta name="author" content="name">
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+
+{{--    the three links for chosen stuff--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
     <script type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/validate.js')}}" defer></script>
 </head>
 
@@ -45,7 +50,7 @@
                             </a>
                         </li>
                         <li class="mr-3 flex-1">
-                            <a href="/ville-admins" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
+                            <a href="/city-admins" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
                                 <i class="fa-solid fa-city pr-0 md:pr-3 text-lg text-sky-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Ville admins</span>
                             </a>
                         </li>
@@ -89,6 +94,11 @@
             }
         }
     }
+
+
+        $(document).ready(function () {
+        $(".chosen-select").chosen();
+    });
 </script>
 <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 </body>
