@@ -63,5 +63,7 @@ Route::get('/home', [\App\Http\Controllers\SiteController::class, 'index'])->nam
 
 
 
+Route::resource('/city-admins',\App\Http\Controllers\CityAdminController::class);
+
 
 
