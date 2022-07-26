@@ -51,7 +51,11 @@
                                         <td class="border-r p-2">{{$cityAdmin->full_name}}</td>
                                         <td class="border-r p-2 text-sm lg:text-md">{{$cityAdmin->email}}</td>
                                         <td class="border-r p-2 text-green-700"><a href="tel:{{$cityAdmin->phone}}">{{$cityAdmin->phone}}</a></td>
-                                        <td class="border-r p-2 text-green-700"><a href="tel:{{$cityAdmin->phone}}">{{$cityAdmin->phone}}</a></td>
+                                        <td class="border-r p-2 text-green-700">
+                                            <span class="p-1.5 bg-sky-900 text-white rounded-lg">Tanger</span>
+                                            <span class="p-1.5 bg-sky-900 text-white rounded-lg">Fes</span>
+                                            <span class="p-1.5 bg-sky-900 text-white rounded-lg">Casablanca</span>
+                                        </td>
                                         <td class="border-r p-2 flex justify-evenly">
                                             <a href="city-admins/{{$cityAdmin->id}}" class="bg-sky-300 rounded px-3 py-1 mr-1" >
                                                 view
@@ -77,7 +81,7 @@
                             </table>
                             {{ $cityAdmins->links() }}
                         @else
-                            <p class="text-lg text-red-500">no pharmacies found</p>
+                            <p class="text-lg text-red-500">no one found</p>
                         @endunless
                     </div>
                 </div>

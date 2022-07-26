@@ -19,7 +19,7 @@
             <div class="max-w-md mx-4">
                 <form class="">
                     <div class="flex gap-3">
-                        <select name="city" id="city_name" placehoder="lksj" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                        <select name="city" id="city_name"  class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
                             <option disabled selected hidden>Sélectionnez une ville</option>
                             @foreach($cities as $city)
                                 <option value="{{$city->name}}">{{$city->name}}</option>

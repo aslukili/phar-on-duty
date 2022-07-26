@@ -29,11 +29,15 @@ Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login'])->
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
+
+
 //pharmacies operations
     Route::get('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'index']);
     Route::get('/pharmacies/create', [\App\Http\Controllers\PharmacyController::class, 'create']);
     Route::post('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'store']);
     Route::delete('/pharmacies/{pharmacy}', [\App\Http\Controllers\PharmacyController::class, 'destroy']);
+    Route::get('/pharmacies/{pharmacy}/edit', [\App\Http\Controllers\PharmacyController::class, 'edit']);
+    Route::put('/pharmacies/{pharmacy}', [\App\Http\Controllers\PharmacyController::class, 'update']);
 
 
 // pharmacie de gard

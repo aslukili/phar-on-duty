@@ -7,5 +7,7 @@
     <div class="text-lg mb-1.5">
         <p>pharmacies totales</p>
         <span class="font-bold text-xl">{{$city->pharmacies()}}</span>
+{{--        <p>admin de la ville</p>--}}
+{{--        <span class="font-bold text-xl">{{$city->city_admin_id}}</span>--}}
     </div>
 </div>

@@ -9,8 +9,9 @@
             <div class="flex flex-wrap">
                 <div class="container mx-auto">
                     <div class="mt-7">
-                        <form method="post" action="/pharmacies" class="max-w-xl mx-auto px-3.5">
+                        <form method="post" action="/pharmacies/{{$pharmacy->id}}" class="max-w-xl mx-auto px-3.5">
                             @csrf
+                            @method('PUT')
                             <div class="relative z-0 w-full mb-6 group">
                                 <select name="city_name" id="city_name" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                                     @foreach($cities as $city)
@@ -20,50 +21,50 @@
                                 <label for="city_name" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Ville (please choose one)</label>
                             </div>
                             <div class="relative z-0 w-full mb-6 group">
-                                <input type="text" id="name_ar" name="name_ar" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="text" id="name_ar" name="name_ar" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" value="{{$pharmacy->name_ar}}" required />
                                 <label for="name_ar" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">اسم الصيدلية</label>
                                 @error('name_ar')
                                 <p class="text-red-500 mt-1.5">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="relative z-0 w-full mb-6 group">
-                                <input type="text" name="name_fr" id="name_fr" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="text" name="name_fr" id="name_fr" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$pharmacy->name_fr}}" required />
                                 <label for="name_fr" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nom de la pharmacie</label>
                             </div>
                             <div class="relative z-0 w-full mb-6 group">
-                                <input type="text" name="address_ar" id="address_ar" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="text" name="address_ar" id="address_ar" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$pharmacy->address_ar}}" required />
                                 <label for="address_ar" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">عنوان الصيدلية</label>
                             </div>
                             <div class="relative z-0 w-full mb-6 group">
-                                <input type="text" name="address_fr" id="address_fr" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="text" name="address_fr" id="address_fr" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$pharmacy->address_fr}}" required />
                                 <label for="address_fr" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Adresse de la pharmacie</label>
                                 @error('address_fr')
                                 <p class="text-red-500 mt-1.5">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="relative z-0 w-full mb-6 group">
-                                <input type="url" name="map_link" id="map_link" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="url" name="map_link" id="map_link" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$pharmacy->map_link}}" required />
                                 <label for="map_link" class="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">lien de map</label>
                                 @error('map_link')
                                 <p class="text-red-500 mt-1.5">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="relative z-0 w-full mb-6 group">
-                                <input type="text" name="map_iframe" id="map_iframe" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="text" name="map_iframe" id="map_iframe" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$pharmacy->map_iframe}}" required />
                                 <label for="map_iframe" class="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">lien de "iframe"</label>
                                 @error('map_iframe')
                                 <p class="text-red-500 mt-1.5">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="relative z-0 w-full mb-6 group">
-                                <input type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$pharmacy->email}}" required />
                                 <label for="email" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">email address</label>
                                 @error('email')
                                 <p class="text-red-500 mt-1.5">{{$message}}</p>
                                 @enderror
                             </div>
                             <div class="relative z-0 w-full mb-6 group">
-                                <input type="tel" name="tel" id="tel" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input type="tel" name="tel" id="tel" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$pharmacy->tel}}" required />
                                 <label for="tel" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">N de telephone</label>
                                 @error('tel')
                                 <p class="text-red-500 mt-1.5">{{$message}}</p>

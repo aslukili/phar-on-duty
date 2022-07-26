@@ -64,4 +64,29 @@ class PharmacyController extends Controller
         $pharmacy->delete();
         return redirect('/pharmacies')->with('message', 'pharmacy deleted');
     }
+
+    public function edit(Pharmacy $pharmacy)
+    {
+        return view('pharmacies.edit', [
+            'title' => 'edit Pharmacy',
+            'pharmacy' => $pharmacy,
+            'cities' => City::all()
+        ]);
+    }
+
+    public function update(Request $request, Pharmacy $pharmacy)
+    {
+        $formFields = $request->validate([
+            'name_ar' => 'required',
+            'name_fr' => 'required',
+            'address_ar' => 'required',
+            'address_fr' => 'required',
+            'city_name' => 'required',
+            'map_iframe' => 'required',
+            'map_link' => ['required', 'url'],
+            'email' => 'email'
+        ]);
+        $pharmacy->update($formFields);
+        return redirect('/pharmacies');
+    }
 }

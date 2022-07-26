@@ -10,7 +10,7 @@ class City extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'city_admin_id'];
 
 
     public function scopeFilter($query, array $filters)
