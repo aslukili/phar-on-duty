@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CityAdmin;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CityAdminController extends Controller
 {
@@ -47,7 +48,13 @@ class CityAdminController extends Controller
             'phone' => ['required', 'unique:city_admins,phone'],
             'password' => 'required'
         ]);
-        CityAdmin::create($formFields);
+
+        CityAdmin::create([
+            'full_name' => $formFields['full_name'],
+            'email' => $formFields['email'],
+            'phone' => $formFields['phone'],
+            'password' => Hash::make($request->password)
+        ]);
         return redirect('/city-admins');
     }
 
@@ -94,7 +101,12 @@ class CityAdminController extends Controller
             'phone' => 'required',
             'password' => 'required'
         ]);
-        $cityAdmin->update($formFields);
+        $cityAdmin->update([
+            'full_name' => $formFields['full_name'],
+            'email' => $formFields['email'],
+            'phone' => $formFields['phone'],
+            'password' => Hash::make($request->password)
+        ]);
         return redirect('/city-admins');
     }
 
