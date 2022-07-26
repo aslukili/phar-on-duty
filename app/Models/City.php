@@ -23,4 +23,9 @@ class City extends Model
     public function pharmacies(){
         return $this->hasMany(Pharmacy::class, 'city_name', 'name')->count('*');
     }
+
+    public function city_admin()
+    {
+        return $this->hasOne(CityAdmin::class, 'id', 'city_admin_id');
+    }
 }

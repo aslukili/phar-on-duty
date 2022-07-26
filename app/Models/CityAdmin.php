@@ -17,4 +17,9 @@ class CityAdmin extends Model
             $query->where('full_name', 'like', '%'.request('search').'%');
         }
     }
+
+    public function cities()
+    {
+        return $this->hasMany(City::class);
+    }
 }
