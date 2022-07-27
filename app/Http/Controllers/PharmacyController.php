@@ -84,6 +84,7 @@ class PharmacyController extends Controller
             'city_name' => 'required',
             'map_iframe' => 'required',
             'map_link' => ['required', 'url'],
+            'tel' => 'nullable',
             'email' => 'email'
         ]);
         $pharmacy->update($formFields);

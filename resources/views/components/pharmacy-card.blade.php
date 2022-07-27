@@ -46,7 +46,8 @@
                             <p class="text-gray-700 text-right">{{$pharmacy->pharmacy->address_ar}}</p>
                         </div>
                         <div class="flex justify-center">
-                            <iframe src="{{$pharmacy->pharmacy->map_iframe}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            {!! $pharmacy->pharmacy->map_iframe !!}
+{{--                            <iframe src="{!! $pharmacy->pharmacy->map_iframe !!}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
                         </div>
                         <!-- call, map, partager -->
                         <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 ">
