@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :user="$user">
     <section class="bg-gray-50 flex-grow">
         <div id="main" class="main-content flex-1 bg-gray-50 pb-24 md:pb-5">
             <div class="bg-gray-800 ">
@@ -13,7 +13,7 @@
                             @csrf
                             <input type="hidden" name="city_name_fk" value="<?php echo $_GET['city']?>">
                             <div class="relative z-0 w-full mb-6 group">
-                                <select name="pharmacy_fk" id="pharmacy_fk" class="block py-2.5 px-0 w-full text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                                <select name="pharmacy_fk[]" id="pharmacy_fk" class="chosen-select" multiple>
                                     @foreach($pharmacies as $pharmacy)
                                         <option value="{{$pharmacy->id}}">{{$pharmacy->name_fr}}</option>
                                     @endforeach

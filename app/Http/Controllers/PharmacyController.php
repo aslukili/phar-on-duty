@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PharmacyController extends Controller
 {
@@ -15,7 +16,8 @@ class PharmacyController extends Controller
                 'title' => 'All Pharmacies',
                 'pharmacies' => Pharmacy::latest()
                     ->filter(\request(['search']))->paginate(16),
-                'cities' => City::all()
+                'cities' => City::all(),
+                'user' => Auth::user()
             ]);
         }
         if (\request()->has('city')) {
@@ -23,14 +25,16 @@ class PharmacyController extends Controller
                 'title' => 'All Pharmacies',
                 'pharmacies' => Pharmacy::latest()
                     ->filter(\request(['city']))->paginate(16),
-                'cities' => City::all()
+                'cities' => City::all(),
+                'user' => Auth::user()
             ]);
         }
         return view('pharmacies.index',[
             'title' => 'All Pharmacies',
             'pharmacies' => Pharmacy::all()
                 ->sortBy('city_name'),
-            'cities' => City::all()
+            'cities' => City::all(),
+            'user' => Auth::user()
         ]);
     }
 
@@ -38,7 +42,8 @@ class PharmacyController extends Controller
     {
         return view('pharmacies.create', [
             'title' => 'ajouter une pharmacie',
-            'cities' => City::all()->sortBy('name')
+            'cities' => City::all()->sortBy('name'),
+            'user' => Auth::user()
         ]);
     }
 
@@ -70,7 +75,8 @@ class PharmacyController extends Controller
         return view('pharmacies.edit', [
             'title' => 'edit Pharmacy',
             'pharmacy' => $pharmacy,
-            'cities' => City::all()
+            'cities' => City::all(),
+            'user' => Auth::user()
         ]);
     }
 

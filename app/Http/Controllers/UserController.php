@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -18,7 +19,8 @@ class UserController extends Controller
     {
         return view('city-admins.index',[
             'title' => 'adminis de villes',
-            'users' => User::latest()->filter(\request(['search']))->paginate(8)
+            'users' => User::latest()->filter(\request(['search']))->paginate(8),
+            'user' => Auth::user()
         ]);
     }
 
@@ -30,7 +32,8 @@ class UserController extends Controller
     public function create()
     {
         return view('city-admins.create', [
-            'title' => 'Ajouter admin'
+            'title' => 'Ajouter admin',
+            'user' => Auth::user()
         ]);
     }
 
@@ -54,7 +57,7 @@ class UserController extends Controller
             'email' => $formFields['email'],
             'phone' => $formFields['phone'],
             'password' => Hash::make($request->password)
-        ]);
+        ])->assignRole('city_admin');
         return redirect('/city-admins');
     }
 

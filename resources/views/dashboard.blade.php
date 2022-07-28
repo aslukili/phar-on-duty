@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout :user="$user">
     <section class="bg-gray-50 flex-grow">
             <div id="main" class="main-content flex-1 bg-gray-100 pb-24 md:pb-5">
                 <div class="bg-gray-800 ">

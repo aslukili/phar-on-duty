@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\CityAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
 {
@@ -14,7 +15,8 @@ class CityController extends Controller
         return view('villes.index',[
             'title' => 'toutes les villes',
             'cities' => City::latest()->filter(\request(['search']))->paginate(12),
-            'users' => User::all()->sortBy('name')
+            'users' => User::all()->sortBy('name'),
+            'user' => Auth::user()
         ]);
     }
 

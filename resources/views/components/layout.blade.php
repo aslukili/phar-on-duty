@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+@props(['user'])
+
 <html lang="en">
 
 <head>
@@ -34,11 +37,13 @@
                                 <i class="fa-solid fa-chart-pie pr-0 md:pr-3 text-lg text-blue-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Analytique</span>
                             </a>
                         </li>
+                        @if($user->hasRole('admin'))
                         <li class="mr-3 flex-1">
                             <a href="/villes" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
                                 <i class="fa-solid fa-city pr-0 md:pr-3 text-lg text-orange-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Villes</span>
                             </a>
                         </li>
+                        @endif
                         <li class="mr-3 flex-1">
                             <a href="/pharmacies" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-500">
                                 <i class="fa-solid fa-prescription-bottle-medical pr-0 md:pr-3 text-lg text-green-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Pharmacies</span>
@@ -49,11 +54,13 @@
                                 <i class="fa-solid fa-prescription-bottle-medical pr-0 md:pr-3 text-lg text-red-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">ph. Gard</span>
                             </a>
                         </li>
+                        @if($user->hasRole('admin'))
                         <li class="mr-3 flex-1">
                             <a href="/city-admins" class="block py-1 md:py-3 pl-0 md:pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-red-500">
                                 <i class="fa-solid fa-city pr-0 md:pr-3 text-lg text-sky-500"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Ville admins</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -94,10 +101,8 @@
             }
         }
     }
-
-
-        $(document).ready(function () {
-        $(".chosen-select").chosen();
+    $(document).ready(function () {
+      $(".chosen-select").chosen();
     });
 </script>
 <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
