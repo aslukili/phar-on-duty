@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="max-w-full overflow-x-auto px-3 mt-7">
-                        @unless(count($cityAdmins) == 0)
+                        @unless(count($users) == 0)
                             <table class="mb-5 border-b table-auto w-full m-auto bg-gray-100 text-lg text-left text-gray-900 shadow-lg shadow-b-xl">
                                 <thead class="bg-green-100">
                                     <tr>
@@ -46,26 +46,26 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-sm">
-                                @foreach($cityAdmins as $cityAdmin)
+                                @foreach($users as $user)
                                     <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                                        <td class="border-r p-2">{{$cityAdmin->full_name}}</td>
-                                        <td class="border-r p-2 text-sm lg:text-md">{{$cityAdmin->email}}</td>
-                                        <td class="border-r p-2 text-green-700"><a href="tel:{{$cityAdmin->phone}}">{{$cityAdmin->phone}}</a></td>
+                                        <td class="border-r p-2">{{$user->name}}</td>
+                                        <td class="border-r p-2 text-sm lg:text-md">{{$user->email}}</td>
+                                        <td class="border-r p-2 text-green-700"><a href="tel:{{$user->phone}}">{{$user->phone}}</a></td>
                                         <td class="border-r p-2 text-green-700">
-                                            @foreach($cityAdmin->cities as $city)
+                                            @foreach($user->cities as $city)
                                                 <span class="p-1.5 bg-sky-900 text-white rounded-lg">{{$city->name}}</span>
                                             @endforeach
                                         </td>
                                         <td class="border-r p-2 flex justify-evenly">
-                                            <a href="city-admins/{{$cityAdmin->id}}" class="bg-sky-300 rounded px-3 py-1 mr-1" >
+                                            <a href="city-admins/{{$user->id}}" class="bg-sky-300 rounded px-3 py-1 mr-1" >
                                                 view
                                             </a>
-                                            <a href="city-admins/{{$cityAdmin->id}}/edit" class="bg-yellow-300 rounded px-3 py-1 mr-1" >
+                                            <a href="city-admins/{{$user->id}}/edit" class="bg-yellow-300 rounded px-3 py-1 mr-1" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                 </svg>
                                             </a>
-                                            <form method="POST" onsubmit="return confirm('are you sure?')" action="/city-admins/{{$cityAdmin->id}}">
+                                            <form method="POST" onsubmit="return confirm('are you sure?')" action="/city-admins/{{$user->id}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="bg-red-500 rounded px-3 py-1 ml-1" type="submit">
@@ -79,7 +79,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{ $cityAdmins->links() }}
+                            {{ $users->links() }}
                         @else
                             <p class="text-lg text-red-500">no one found</p>
                         @endunless

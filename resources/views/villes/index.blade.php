@@ -61,10 +61,10 @@
                                 </div>
                                 <div class="mt-3">
                                     <label for="city_admin" class="block mb-1 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
-                                    <select name="city_admin_id" id="city_admin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                    <select name="user_id" id="city_admin" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                                         <option selected hidden disabled>Select an admin for this city</option>
-                                        @foreach($cityAdmins as $cityAdmin)
-                                            <option value="{{$cityAdmin->id}}">{{$cityAdmin->full_name}}</option>
+                                        @foreach($users as $user)
+                                            <option value="{{$user->id}}">{{$user->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

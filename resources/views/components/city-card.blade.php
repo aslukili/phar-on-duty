@@ -9,8 +9,8 @@
         <span class="font-bold text-xl">{{$city->pharmacies()}}</span>
         <p>admin de la ville:</p>
         <span class="font-bold text-xl">
-            @if(isset($city->city_admin->full_name))
-                {{$city->city_admin->full_name}}
+            @if(isset($city->user->name))
+                {{$city->user->name}}
             @endif
         </span>
     </div>

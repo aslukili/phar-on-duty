@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\CityAdmin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -13,7 +14,7 @@ class CityController extends Controller
         return view('villes.index',[
             'title' => 'toutes les villes',
             'cities' => City::latest()->filter(\request(['search']))->paginate(12),
-            'cityAdmins' => CityAdmin::all()->sortBy('full_name')
+            'users' => User::all()->sortBy('name')
         ]);
     }
 
@@ -21,7 +22,7 @@ class CityController extends Controller
     {
         $formFields = $request->validate([
             'name' => ['required', 'unique:cities'],
-            'city_admin_id' => 'nullable',
+            'user_id' => 'nullable',
         ]);
 
         City::create($formFields);

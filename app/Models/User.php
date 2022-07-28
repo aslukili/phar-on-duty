@@ -42,4 +42,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function scopeFilter($query, array $filters)
+    {
+        if($filters['search'] ?? false) {
+            $query->where('full_name', 'like', '%'.request('search').'%');
+        }
+    }
+
+    public function cities()
+    {
+        return $this->hasMany(City::class);
+    }
 }

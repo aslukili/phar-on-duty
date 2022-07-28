@@ -58,6 +58,16 @@
                             </div>
                         </div>
                     </div>
+                    @if(request()->has('city') || request()->has('date'))
+                    <div class="mt-3"></div>
+                    <span class="mt-3">showing result for:</span>
+                    @if(isset($_GET['city']))
+                         <span class="font-bold"> city <span class="text-green-900"><?php echo $_GET['city'] ?></span>,</span>
+                    @endif
+                    @if(isset($_GET['date']))
+                         <span class=" font-bold">date <span class="text-green-900"><?php echo $_GET['date']?></span> </span>
+                    @endif
+                    @endif
                     <div class="max-w-full overflow-x-auto px-3 mt-7">
                         @unless(count($pharmacies) == 0)
                             <table class="border-b table-auto w-full m-auto bg-gray-100 text-lg text-left text-gray-900 shadow-lg shadow-b-xl">

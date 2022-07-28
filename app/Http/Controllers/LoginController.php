@@ -9,9 +9,10 @@ class LoginController extends Controller
 {
     public function login( Request $request)
     {
-        if (Auth::attempt($request->only('email', 'password'))){
-            return redirect('/dashboard');
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' =>
+            $request->password])) {
+            return redirect()->intended(route('dashboard'));
         }
-        return back()->with('error','lsdkjf');
+        return redirect('/login');
     }
 }

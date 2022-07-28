@@ -27,12 +27,16 @@ Route::get('/register', function (){
 Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'register'])->name('register');
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
+Route::group(['middleware' => 'auth'],function () {
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+
+//users
+    Route::resource('/city-admins',\App\Http\Controllers\UserController::class);
 
 
 //pharmacies operations
-    Route::get('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'index']);
+    Route::get('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'index'])->name('pharmacies');
     Route::get('/pharmacies/create', [\App\Http\Controllers\PharmacyController::class, 'create']);
     Route::post('/pharmacies', [\App\Http\Controllers\PharmacyController::class, 'store']);
     Route::delete('/pharmacies/{pharmacy}', [\App\Http\Controllers\PharmacyController::class, 'destroy']);
@@ -57,7 +61,7 @@ Route::middleware('auth')->group(function () {
 
 
 //getting visitor location:
-Route::get('/user',[\App\Http\Controllers\UserController::class,'user']);
+Route::get('/user',[\App\Http\Controllers\UserLocationController::class,'user']);
 
 
 
@@ -67,7 +71,6 @@ Route::get('/home', [\App\Http\Controllers\SiteController::class, 'index'])->nam
 
 
 
-Route::resource('/city-admins',\App\Http\Controllers\CityAdminController::class);
 
 
 

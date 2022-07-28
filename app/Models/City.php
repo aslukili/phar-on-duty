@@ -10,7 +10,7 @@ class City extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'city_admin_id'];
+    protected $fillable = ['name', 'user_id'];
 
 
     public function scopeFilter($query, array $filters)
@@ -24,8 +24,8 @@ class City extends Model
         return $this->hasMany(Pharmacy::class, 'city_name', 'name')->count('*');
     }
 
-    public function city_admin()
+    public function user()
     {
-        return $this->hasOne(CityAdmin::class, 'id', 'city_admin_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }
