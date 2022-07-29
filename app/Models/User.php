@@ -49,7 +49,7 @@ class User extends Authenticatable
     public function scopeFilter($query, array $filters)
     {
         if($filters['search'] ?? false) {
-            $query->where('full_name', 'like', '%'.request('search').'%');
+            $query->where('name', 'like', '%'.request('search').'%');
         }
     }
 

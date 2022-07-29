@@ -17,7 +17,7 @@ class PharmacyController extends Controller
                 'pharmacies' => Pharmacy::latest()
                     ->filter(\request(['search']))->paginate(16),
                 'cities' => City::all(),
-                'user' => Auth::user()
+                'authUser' => Auth::user()
             ]);
         }
         if (\request()->has('city')) {
@@ -26,7 +26,7 @@ class PharmacyController extends Controller
                 'pharmacies' => Pharmacy::latest()
                     ->filter(\request(['city']))->paginate(16),
                 'cities' => City::all(),
-                'user' => Auth::user()
+                'authUser' => Auth::user()
             ]);
         }
         return view('pharmacies.index',[
@@ -34,7 +34,7 @@ class PharmacyController extends Controller
             'pharmacies' => Pharmacy::all()
                 ->sortBy('city_name'),
             'cities' => City::all(),
-            'user' => Auth::user()
+            'authUser' => Auth::user()
         ]);
     }
 
@@ -43,7 +43,7 @@ class PharmacyController extends Controller
         return view('pharmacies.create', [
             'title' => 'ajouter une pharmacie',
             'cities' => City::all()->sortBy('name'),
-            'user' => Auth::user()
+            'authUser' => Auth::user()
         ]);
     }
 
@@ -76,7 +76,7 @@ class PharmacyController extends Controller
             'title' => 'edit Pharmacy',
             'pharmacy' => $pharmacy,
             'cities' => City::all(),
-            'user' => Auth::user()
+            'authUser' => Auth::user()
         ]);
     }
 

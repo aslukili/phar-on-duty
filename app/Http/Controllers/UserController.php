@@ -17,10 +17,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('city-admins.index',[
-            'title' => 'adminis de villes',
+        return view('users.index',[
+            'title' => 'adminis de cities',
             'users' => User::latest()->filter(\request(['search']))->paginate(8),
-            'user' => Auth::user()
+            'authUser' => Auth::user()
         ]);
     }
 
@@ -31,9 +31,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('city-admins.create', [
+        return view('users.create', [
             'title' => 'Ajouter admin',
-            'user' => Auth::user()
+            'authUser' => Auth::user()
         ]);
     }
 
@@ -58,7 +58,7 @@ class UserController extends Controller
             'phone' => $formFields['phone'],
             'password' => Hash::make($request->password)
         ])->assignRole('city_admin');
-        return redirect('/city-admins');
+        return redirect('/users');
     }
 
     /**
@@ -69,9 +69,10 @@ class UserController extends Controller
      */
     public function show(User $User)
     {
-        return view('city-admins.show',[
-            'title' => $User->full_name,
-            'user' => $User
+        return view('users.show',[
+            'title' => $User->name,
+            'user' => $User,
+            'authUser' => Auth::user()
         ]);
     }
 
@@ -83,8 +84,9 @@ class UserController extends Controller
      */
     public function edit(User $User)
     {
-        return view('city-admins.edit', [
+        return view('users.edit', [
             'title' => 'edit city admin',
+            'authUser' => Auth::user(),
             'user' => $User
         ]);
     }
@@ -110,7 +112,7 @@ class UserController extends Controller
             'phone' => $formFields['phone'],
             'password' => Hash::make($request->password)
         ]);
-        return redirect('/city-admins');
+        return redirect('/users');
     }
 
     /**
@@ -122,6 +124,6 @@ class UserController extends Controller
     public function destroy(User $User)
     {
         $User->delete();
-        return redirect('/city-admins');
+        return redirect('/users');
     }
 }

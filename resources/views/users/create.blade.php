@@ -1,4 +1,4 @@
-<x-layout :user="$user">
+<x-layout :user="$authUser">
     <section class="bg-gray-50 flex-grow">
         <div id="main" class="main-content flex-1 bg-gray-50 pb-24 md:pb-5">
             <div class="bg-gray-800 ">
@@ -9,7 +9,7 @@
             <div class="flex flex-wrap">
                 <div class="container mx-auto">
                     <div class="mt-7">
-                        <form method="post" action="/city-admins" class="max-w-xl mx-auto px-3.5 bg-sky-100 p-7 shadow-lg">
+                        <form method="post" action="/users" class="max-w-xl mx-auto px-3.5 bg-sky-100 p-7 shadow-lg">
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">nom et prénom</label>

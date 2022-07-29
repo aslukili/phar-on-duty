@@ -14,7 +14,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'cities_count' => City::all()->count(),
             'pharmacies_count' => Pharmacy::all()->count(),
-            'user' => Auth::user()
+            'authUser' => Auth::user()
         ]);
     }
 }

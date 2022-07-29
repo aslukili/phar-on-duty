@@ -32,7 +32,11 @@ Route::group(['middleware' => 'auth'],function () {
 
 
 //users
-    Route::resource('/city-admins',\App\Http\Controllers\UserController::class)->middleware('is_admin');
+    Route::resource('/users',\App\Http\Controllers\UserController::class)->middleware('is_admin');
+
+
+//cities
+    Route::resource('/cities', \App\Http\Controllers\CityController::class)->middleware('is_admin');
 
 
 //pharmacies operations
@@ -53,9 +57,6 @@ Route::group(['middleware' => 'auth'],function () {
 //    Route::get('/pharmacie-de-gard/delete-all', [\App\Http\Controllers\GuardPharmacyController::class, 'delete']);
 
 
-//cities operations
-    Route::get('/villes', [\App\Http\Controllers\CityController::class, 'index'])->middleware('is_admin');
-    Route::post('/villes', [\App\Http\Controllers\CityController::class, 'store'])->middleware('is_admin');
 });
 
 

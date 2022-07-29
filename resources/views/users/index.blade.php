@@ -1,4 +1,4 @@
-<x-layout :user="$user">
+<x-layout :user="$authUser">
     <section class="bg-gray-50 flex-grow">
         <div id="main" class="main-content flex-1 bg-gray-50 pb-24 md:pb-5">
             <div class="bg-gray-800 ">
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="text-right">
-                            <a href="/city-admins/create" type="button" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            <a href="/users/create" type="button" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                 Ajouter admin
                             </a>
                         </div>
@@ -57,15 +57,15 @@
                                             @endforeach
                                         </td>
                                         <td class="border-r p-2 flex justify-evenly">
-                                            <a href="city-admins/{{$user->id}}" class="bg-sky-300 rounded px-3 py-1 mr-1" >
+                                            <a href="users/{{$user->id}}" class="bg-sky-300 rounded px-3 py-1 mr-1" >
                                                 view
                                             </a>
-                                            <a href="city-admins/{{$user->id}}/edit" class="bg-yellow-300 rounded px-3 py-1 mr-1" >
+                                            <a href="users/{{$user->id}}/edit" class="bg-yellow-300 rounded px-3 py-1 mr-1" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                 </svg>
                                             </a>
-                                            <form method="POST" onsubmit="return confirm('are you sure?')" action="/city-admins/{{$user->id}}">
+                                            <form method="POST" onsubmit="return confirm('are you sure?')" action="/users/{{$user->id}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="bg-red-500 rounded px-3 py-1 ml-1" type="submit">

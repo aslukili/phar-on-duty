@@ -1,4 +1,4 @@
-<x-layout :user="$user">
+<x-layout :user="$authUser">
     <section class="bg-gray-50 flex-grow">
         <div id="main" class="main-content flex-1 bg-gray-50 pb-24 md:pb-5">
             <div class="bg-gray-800 ">
@@ -19,8 +19,8 @@
                                 </div>
                                 <div class=" ">
                                     <div class="text-center px-14">
-                                        <h2 class="text-gray-800 text-3xl font-bold">{{$cityAdmin->full_name}}</h2>
-                                        <p class="hover:text-gray-400 mt-2 text-blue-500">{{$cityAdmin->email}}</p>
+                                        <h2 class="text-gray-800 text-3xl font-bold">{{$user->name}}</h2>
+                                        <p class="hover:text-gray-400 mt-2 text-blue-500">{{$user->email}}</p>
                                         <div class="mt-3 text-left ">
                                             <h2 class="text-lg font-bold">assigned cities:</h2>
                                             <p class="mt-2 text-gray-800">Tanger, Tetouan, Larache</p>
@@ -29,10 +29,10 @@
                                     <hr class="mt-6" />
                                     <div class="flex  bg-gray-50 ">
                                         <div class="bg-yellow-700 text-center w-1/2 p-4 hover:bg-yellow-500 cursor-pointer">
-                                            <a href="/city-admins/{{$cityAdmin->id}}/edit" class="text-white">Éditer</a>
+                                            <a href="/users/{{$user->id}}/edit" class="text-white">Éditer</a>
                                         </div>
                                         <div class="border"></div>
-                                        <form method="POST" class="bg-red-700 text-center w-1/2 p-4 hover:bg-red-500 cursor-pointer" onsubmit="return confirm('are you sure?')" action="/city-admins/{{$cityAdmin->id}}">
+                                        <form method="POST" class="bg-red-700 text-center w-1/2 p-4 hover:bg-red-500 cursor-pointer" onsubmit="return confirm('are you sure?')" action="/users/{{$user->id}}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-white">

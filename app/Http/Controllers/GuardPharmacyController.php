@@ -19,7 +19,7 @@ class GuardPharmacyController extends Controller
                 'title' => 'Les pharmacies de gard',
                 'pharmacies' => GuardPharmacy::latest()->filter(\request(['city', 'date']))->paginate(16),
                 'cities' => City::all(),
-                'user' => Auth::user()
+                'authUser' => Auth::user()
             ]);
         }
 
@@ -28,7 +28,7 @@ class GuardPharmacyController extends Controller
             'pharmacies' => GuardPharmacy::where('open_time', 'like', '%'.date('Y-m-d').'%')->get(),
 //            'pharmacies' => GuardPharmacy::all()->sortBy('city_name_fk'),
             'cities' => City::all(),
-            'user' => Auth::user()
+            'authUser' => Auth::user()
         ]);
     }
 
@@ -37,7 +37,7 @@ class GuardPharmacyController extends Controller
         return view('pharmacies-de-gard.create', [
             'title' => 'ajouter une pharmacie',
             'pharmacies' => Pharmacy::latest()->filter(\request(['city']))->get(),
-            'user' => Auth::user()
+            'authUser' => Auth::user()
         ]);
     }
 
