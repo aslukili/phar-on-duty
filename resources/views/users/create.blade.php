@@ -39,6 +39,15 @@
                             @error('password')
                             <p class="text-red-500 mt-1.5">{{$message}}</p>
                             @enderror
+                            <div class="relative z-0 w-full mb-6 group">
+                                <select name="pharmacy_fk[]" id="pharmacy_fk" class="chosen-select w-full " multiple>
+                                    @foreach($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->name}}</option>
+                                    @endforeach
+                                </select>
+                                <label for="pharmacy_fk" class="peer-focus:font-medium absolute text-lg text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                </label>
+                            </div>
                             <p class="text-green-700">L'e-mail et le mot de passe seront utilisés pour connecter cet utilisateur</p>
                             <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center ">Ajouter</button>
                         </form>

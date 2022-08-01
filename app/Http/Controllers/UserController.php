@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\User;
 use App\Models\Pharmacy;
 use Illuminate\Http\Request;
@@ -33,7 +34,8 @@ class UserController extends Controller
     {
         return view('users.create', [
             'title' => 'Ajouter admin',
-            'authUser' => Auth::user()
+            'authUser' => Auth::user(),
+            'cities' => City::all()
         ]);
     }
 
@@ -101,7 +103,7 @@ class UserController extends Controller
     public function update(Request $request, User $User)
     {
         $formFields = $request->validate([
-            'full_name' => 'required',
+            'name' => 'required',
             'email' => ['required', 'email'],
             'phone' => 'required',
             'password' => 'required'

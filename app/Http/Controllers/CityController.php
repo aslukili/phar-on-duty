@@ -67,32 +67,43 @@ class CityController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(City $city)
     {
-        //
+        return view('cities.edit', [
+            'title' => 'edit city',
+            'authUser' => Auth::user(),
+            'users' => User::all()->sortBy('name'),
+            'city' => $city
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, City $city)
     {
-        //
+        $formFields = $request->validate([
+            'name' => 'required',
+            'user_id' => 'nullable',
+        ]);
+        $city->update($formFields);
+        return redirect('/cities');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\City  $city
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy(City $city)
     {
-        //
+        $city->delete();
+        return redirect('/cities');
     }
 }
