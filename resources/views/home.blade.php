@@ -14,22 +14,18 @@
     </head>
 <body>
     <main>
-        @include('partials._hero')
-        <section class="container mx-auto mt-7 md:mt-16 lg:mt-24" id="gard-pharmacies">
-            <div class="max-w-md mx-4">
-                <form class="">
-                    <div class="flex gap-3">
-                        <select name="city" id="city_name"  class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-                            <option disabled selected hidden>Sélectionnez une ville</option>
-                            @foreach($cities as $city)
-                                <option value="{{$city->name}}">{{$city->name}}</option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Trouver</button>
-                    </div>
-                </form>
+{{--        @include('partials._hero')--}}
+        <section class="container mx-auto" id="gard-pharmacies">
+            <div class="text-right">
+                <h1 class=" font-bold text-green-900 text-xl">
+                    صيدليات الحراسة بمدينة طنجة
+                </h1>
+                <p>
+                    ليوم 1 غشت من 8 مساء
+                    إلى 9 صباحا لليوم الموالي
+                </p>
             </div>
-            <div class="mt-7 bg-white lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
+            <div class="mt-5 bg-white md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
                 @unless(count($pharmacies) == 0)
                     @foreach($pharmacies as $pharmacy)
                         @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
