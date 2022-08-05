@@ -72,9 +72,9 @@ class GuardPharmacyController extends Controller
         return redirect('/pharmacie-de-gard')->with('message', 'pharmacy deleted');
     }
 
-//    public function delete()
-//    {
-//        DB::table('guard_pharmacies')->truncate();
-//        return redirect('/pharmacie-de-gard');
-//    }
+    public function delete()
+    {
+        DB::table('guard_pharmacies')->truncate();
+        return redirect('/pharmacie-de-gard');
+    }
 }

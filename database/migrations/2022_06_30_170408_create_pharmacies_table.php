@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('map_link');
             $table->longText('map_iframe');
             $table->string('city_name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->foreign('city_name')->references('name')->on('cities')->onDelete('CASCADE');
             $table->timestamps();
         });

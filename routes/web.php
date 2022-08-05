@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'],function () {
     Route::post('/pharmacie-de-gard', [\App\Http\Controllers\GuardPharmacyController::class, 'store']);
     Route::delete('/pharmacie-de-gard/{guardPharmacy}', [\App\Http\Controllers\GuardPharmacyController::class, 'destroy']);
     //delete all records from table
-//    Route::get('/pharmacie-de-gard/delete-all', [\App\Http\Controllers\GuardPharmacyController::class, 'delete']);
+    Route::get('/pharmacie-de-gard/delete-all', [\App\Http\Controllers\GuardPharmacyController::class, 'delete']);
 
 
 });

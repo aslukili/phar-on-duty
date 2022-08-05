@@ -21,7 +21,7 @@
                     صيدليات الحراسة بمدينة طنجة
                 </h1>
                 <p>
-                    ليوم 1 غشت من 8 مساء
+                    ليوم <span id="arabicDate"></span> من 8 مساء
                     إلى 9 صباحا لليوم الموالي
                 </p>
             </div>
@@ -40,5 +40,16 @@
         </section>
     </main>
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+    <script>
+        let date = new Date();
+        let months = ["يناير", "فبراير", "مارس", "أبريل", "ماي", "يونيو",
+            "يوليوز", "غشت", "شتنبر", "أكتوبر", "نونبر", "دجنبر"
+        ];
+        let days = ["اﻷحد", "الإثنين", "الثلاثاء", "اﻷربعاء", "الخميس", "الجمعة", "السبت"];
+        let todayArabic = days[date.getDay()] +' '+ date.getDate() + ' ' + months[date.getMonth()]
+
+
+        document.getElementById("arabicDate").innerHTML = todayArabic;
+    </script>
 </body>
 </html>

@@ -111,7 +111,7 @@
                             <p class="text-lg text-red-500">no pharmacies found</p>
                         @endunless
                     </div>
-{{--                    <a href="pharmacie-de-gard/delete-all" class="text-red-800">effacer toutes les données</a>--}}
+                    <a href="pharmacie-de-gard/delete-all" class="text-red-800">effacer toutes les données</a>
                 </div>
             </div>
         </div>

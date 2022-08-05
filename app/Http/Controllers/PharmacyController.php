@@ -40,9 +40,16 @@ class PharmacyController extends Controller
 
     public function create()
     {
+        $cities = City::where('user_id', Auth::id())->get();
+
+        if ($cities->isEmpty()) {
+            $cities = City::all();
+        }
+
         return view('pharmacies.create', [
             'title' => 'ajouter une pharmacie',
-            'cities' => City::all()->sortBy('name'),
+            'cities' => $cities,
+//            'cities' => City::all()->sortBy('name'),
             'authUser' => Auth::user()
         ]);
     }
@@ -58,7 +65,7 @@ class PharmacyController extends Controller
             'map_iframe' => 'required',
             'map_link' => ['required', 'url', 'unique:pharmacies,map_link'],
             'tel' => 'unique:pharmacies,tel',
-            'email' => ['email', 'unique:pharmacies,email']
+            'email' => 'nullable'
         ]);
         Pharmacy::create($formFields);
         return redirect('/pharmacies')->with('message', 'Pharmacy added successfully!');
