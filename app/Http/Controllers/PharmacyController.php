@@ -31,8 +31,7 @@ class PharmacyController extends Controller
         }
         return view('pharmacies.index',[
             'title' => 'All Pharmacies',
-            'pharmacies' => Pharmacy::all()
-                ->sortBy('city_name'),
+            'pharmacies' => Pharmacy::paginate(10),
             'cities' => City::all(),
             'authUser' => Auth::user()
         ]);

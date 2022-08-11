@@ -26,16 +26,20 @@
                     ليوم <span id="arabicDate"></span>
                 </p>
             </div>
-            <div>
-                <div class="flex justify-center">
-                    <div onclick="displayDayPharmacies()" id="day" class="cursor-pointer bg-red-500 max-w-sm">day</div>
-                    <div onclick="displayNightPharmacies()" id="night" class="cursor-pointer bg-green-500 max-w-sm">night</div>
+            <div class="">
+                <div class="grid grid-cols-2">
+                    <div onclick="displayNightPharmacies()" id="night" class="bg-gray-100 border-x-4 border-t-4  border-sky-500  cursor-pointer  text-center">
+                        <p>ليلا</p>
+                    </div>
+                    <div onclick="displayDayPharmacies()" id="day" class="bg-gray-300  border-b-4 border-sky-500 cursor-pointer text-center">
+                        <p>نهارا</p>
+                    </div>
                 </div>
-                <div id="nightPharmacies">
+                <div id="nightPharmacies" class="border-x-4 border-b-4 border-sky-500 bg-gray-100">
                     <p class="text-right">
                         من 8:30 مساء إلى 9:30 صباحا لليوم الموالي
                     </p>
-                    <div   class="mt-5 bg-white md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
+                    <div   class="mt-5 md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
                         @unless(count($nightPharmacies) == 0)
                             @foreach($nightPharmacies as $pharmacy)
                                 @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
@@ -48,11 +52,11 @@
                     </div>
                 </div>
 
-                <div id="dayPharmacies" style="display: none">
+                <div id="dayPharmacies" style="display: none" class="border-x-4 border-b-4 border-sky-500 bg-gray-100">
                     <p class="text-right">
                         من 13:30 إلى 16:30
                     </p>
-                    <div   class="mt-5 bg-white md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
+                    <div   class="mt-5 md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
                         @unless(count($dayPharmacies) == 0)
                             @foreach($dayPharmacies as $pharmacy)
                                 @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
@@ -64,10 +68,7 @@
                         @endunless
                     </div>
                 </div>
-
             </div>
-
-
         </section>
     </main>
 
@@ -78,7 +79,7 @@
             "يوليوز", "غشت", "شتنبر", "أكتوبر", "نونبر", "دجنبر"
         ];
         let days = ["اﻷحد", "الإثنين", "الثلاثاء", "اﻷربعاء", "الخميس", "الجمعة", "السبت"];
-        let todayArabic = days[date.getDay()] +' '+ date.getDate() + ' ' + months[date.getMonth()]
+        let todayArabic = days[date.getDay()] +' '+ date.getDate() + ' ' + months[date.getMonth()]+' '+date.getFullYear()
 
 
         document.getElementById("arabicDate").innerHTML = todayArabic;
@@ -93,12 +94,26 @@
             // TODO
             night.style.display = "none";
             day.style.removeProperty('display');
+            document.getElementById("day").classList.remove("bg-gray-300", "border-b-4")
+            document.getElementById('day').classList.add("bg-gray-100", "border-x-4", "border-t-4")
+            //remove classes from night button
+            document.getElementById('night').classList.add("border-b-4", "bg-gray-300")
+            document.getElementById('night').classList.remove("bg-gray-100", "border-x-4", "border-t-4")
+
+
         }
 
         function displayNightPharmacies() {
             // TODO
             day.style.display = "none";
             night.style.removeProperty('display')
+
+            document.getElementById("night").classList.remove("bg-gray-300", "border-b-4")
+            document.getElementById('night').classList.add("bg-gray-100", "border-x-4", "border-t-4")
+            //remove classes from night button
+            document.getElementById('day').classList.add("border-b-4", "bg-gray-300")
+            document.getElementById('day').classList.remove("bg-gray-100", "border-x-4", "border-t-4")
+
         }
     </script>
 </body>

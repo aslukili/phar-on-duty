@@ -77,6 +77,9 @@
                         @else
                             <p class="text-lg text-red-500">no pharmacies found</p>
                         @endunless
+                            <div class="mt-6 p-4">
+                                {{$pharmacies->links()}}
+                            </div>
                     </div>
                 </div>
             </div>

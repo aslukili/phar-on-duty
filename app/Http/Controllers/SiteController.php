@@ -22,12 +22,12 @@ class SiteController extends Controller
             'title' => 'pharmcien de guard',
             'nightPharmacies' => GuardPharmacy::where([
                 ['city_name_fk', 'like', '%'.request('city').'%'],
-                ['open_time', 'like', '%20:00%']
+                ['open_time', 'like', '%20:30%']
                 // TODO get only today's data
             ])->get(),
             'dayPharmacies' => GuardPharmacy::where([
                 ['city_name_fk', 'like', '%'.request('city').'%'],
-                ['open_time', 'not like', '%20:00%']
+                ['open_time', 'not like', '%20:30%']
                 // TODO get only today's data
             ])->get(),
 //            'pharmacies' => DB::table('guard_pharmacies')->where('city_name_fk', 'like', '%'.request('city').'%')->get(),
