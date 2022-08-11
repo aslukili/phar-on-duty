@@ -10,6 +10,8 @@
 {{--        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />--}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="https://cdn.tailwindcss.com"></script>
+
+
         <title>Pharmacies de gard | Tanger ville</title>
     </head>
 <body>
@@ -21,24 +23,54 @@
                     صيدليات الحراسة بمدينة طنجة
                 </h1>
                 <p>
-                    ليوم <span id="arabicDate"></span> من 8 مساء
-                    إلى 9 صباحا لليوم الموالي
+                    ليوم <span id="arabicDate"></span>
                 </p>
             </div>
-            <div class="mt-5 bg-white md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
-                @unless(count($pharmacies) == 0)
-                    @foreach($pharmacies as $pharmacy)
-                        @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
-                            <x-pharmacy-card :pharmacy="$pharmacy"/>
-                        @endif
-                    @endforeach
-                @else
-                    <p class="text-lg text-red-500">Les pharmacies de garde d'aujourd'hui n'ont pas encore été publiées, veuillez visiter le site après midi</p>
-                @endunless
+            <div>
+                <div class="flex justify-center">
+                    <div onclick="displayDayPharmacies()" id="day" class="cursor-pointer bg-red-500 max-w-sm">day</div>
+                    <div onclick="displayNightPharmacies()" id="night" class="cursor-pointer bg-green-500 max-w-sm">night</div>
+                </div>
+                <div id="nightPharmacies">
+                    <p class="text-right">
+                        من 8:30 مساء إلى 9:30 صباحا لليوم الموالي
+                    </p>
+                    <div   class="mt-5 bg-white md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
+                        @unless(count($nightPharmacies) == 0)
+                            @foreach($nightPharmacies as $pharmacy)
+                                @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
+                                    <x-pharmacy-card :pharmacy="$pharmacy"/>
+                                @endif
+                            @endforeach
+                        @else
+                            <p class="text-lg text-red-500">Les pharmacies de garde d'aujourd'hui n'ont pas encore été publiées, veuillez visiter le site après midi</p>
+                        @endunless
+                    </div>
+                </div>
+
+                <div id="dayPharmacies" style="display: none">
+                    <p class="text-right">
+                        من 13:30 إلى 16:30
+                    </p>
+                    <div   class="mt-5 bg-white md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
+                        @unless(count($dayPharmacies) == 0)
+                            @foreach($dayPharmacies as $pharmacy)
+                                @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
+                                    <x-pharmacy-card :pharmacy="$pharmacy"/>
+                                @endif
+                            @endforeach
+                        @else
+                            <p class="text-lg text-red-500">Les pharmacies de garde d'aujourd'hui n'ont pas encore été publiées, veuillez visiter le site après midi</p>
+                        @endunless
+                    </div>
+                </div>
+
             </div>
+
 
         </section>
     </main>
+
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
     <script>
         let date = new Date();
@@ -50,6 +82,24 @@
 
 
         document.getElementById("arabicDate").innerHTML = todayArabic;
+
+        //    toggle DAY AND NIGHT
+        const night = document.getElementById('nightPharmacies');
+        // const nightButton = document.getElementById('night');
+        const day = document.getElementById('dayPharmacies');
+        // const dayButton = document.getElementById('day');
+
+        function displayDayPharmacies() {
+            // TODO
+            night.style.display = "none";
+            day.style.removeProperty('display');
+        }
+
+        function displayNightPharmacies() {
+            // TODO
+            day.style.display = "none";
+            night.style.removeProperty('display')
+        }
     </script>
 </body>
 </html>

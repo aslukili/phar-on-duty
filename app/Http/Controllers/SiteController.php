@@ -20,7 +20,16 @@ class SiteController extends Controller
     {
         return view('home',[
             'title' => 'pharmcien de guard',
-            'pharmacies' => GuardPharmacy::where('city_name_fk', 'like', '%'.request('city').'%')->get(),
+            'nightPharmacies' => GuardPharmacy::where([
+                ['city_name_fk', 'like', '%'.request('city').'%'],
+                ['open_time', 'like', '%20:00%']
+                // TODO get only today's data
+            ])->get(),
+            'dayPharmacies' => GuardPharmacy::where([
+                ['city_name_fk', 'like', '%'.request('city').'%'],
+                ['open_time', 'not like', '%20:00%']
+                // TODO get only today's data
+            ])->get(),
 //            'pharmacies' => DB::table('guard_pharmacies')->where('city_name_fk', 'like', '%'.request('city').'%')->get(),
 //            'pharmacies' => GuardPharmacy::latest()->filter(\request(['city']))->paginate(16),
             'cities' => City::all()->sortBy('name'),

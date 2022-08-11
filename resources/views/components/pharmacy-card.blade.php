@@ -10,7 +10,7 @@
             />
         </div>
 
-        <div class=" pt-1.5 pl-1.5 pb-1.5 flex-grow" >
+        <div class=" pt-1.5 pl-3 pb-1.5 pr-3 md:pr-0 md:pl-1.5 flex-grow" >
             <h3 class="text-right font-bold text-green-700 text-md xl:text-lg">
                 {{$pharmacy->pharmacy->name_ar}}
             </h3>
@@ -56,16 +56,17 @@
                             <p class="text-gray-700">{{$pharmacy->pharmacy->address_fr}}</p>
                             <p class="text-gray-700 text-right">{{$pharmacy->pharmacy->address_ar}}</p>
                         </div>
-                        <div class="flex justify-center">
-                            {!! $pharmacy->pharmacy->map_iframe !!}
-{{--                            <iframe src="{!! $pharmacy->pharmacy->map_iframe !!}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
-                        </div>
-                        <!-- call, map, partager -->
                         <div class="flex items-center justify-end p-6 space-x-2 rounded-b border-t border-gray-200 ">
                             <a href="whatsapp://send?text={{$pharmacy->pharmacy->map_link}}" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300  shadow-md shadow-purple-500/50  font-medium rounded-sm text-sm px-1.5 py-1 text-center mr-1.5">أرسل عبر الواتساب</a>
                             <a href="{{$pharmacy->pharmacy->map_link}}" target="_blank" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300  shadow-md shadow-cyan-500/50  font-medium rounded-sm text-sm px-1.5 py-1 text-center mr-1.5">الخريطة</a>
                             <a href="tel:{{$pharmacy->pharmacy->tel}}" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-md shadow-green-500/50  font-medium rounded-sm text-sm px-1.5 py-1 text-center mr-1.5">اتصل بالصيدلية</a>
                         </div>
+                        <div class="flex justify-center">
+                            {!! $pharmacy->pharmacy->map_iframe !!}
+                            {{--                            <iframe src="{!! $pharmacy->pharmacy->map_iframe !!}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>--}}
+                        </div>
+                        <!-- call, map, partager -->
+
                     </div>
                 </div>
             </div>
