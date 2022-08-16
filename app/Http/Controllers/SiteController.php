@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\GuardPharmacy;
 use App\Models\Pharmacy;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
@@ -20,15 +21,15 @@ class SiteController extends Controller
     {
         return view('home',[
             'title' => 'pharmcien de guard',
-            'nightPharmacies' => GuardPharmacy::where([
+            'nightPharmacies' => GuardPharmacy::whereDate('open_time', '=', Carbon::today()->toDateString())
+            ->where([
                 ['city_name_fk', 'like', '%'.request('city').'%'],
-                ['open_time', 'like', '%20:30%']
-                // TODO get only today's data
+                ['open_time', 'like', '%20:30%'],
             ])->get(),
-            'dayPharmacies' => GuardPharmacy::where([
+            'dayPharmacies' => GuardPharmacy::whereDate('open_time', '=', Carbon::today()->toDateString())
+            ->where([
                 ['city_name_fk', 'like', '%'.request('city').'%'],
                 ['open_time', 'not like', '%20:30%']
-                // TODO get only today's data
             ])->get(),
 //            'pharmacies' => DB::table('guard_pharmacies')->where('city_name_fk', 'like', '%'.request('city').'%')->get(),
 //            'pharmacies' => GuardPharmacy::latest()->filter(\request(['city']))->paginate(16),

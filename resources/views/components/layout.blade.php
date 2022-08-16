@@ -20,8 +20,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
     <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
-
     <script type="text/javascript" src="{{ \Illuminate\Support\Facades\URL::asset('js/validate.js')}}" defer></script>
+
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    backgroundImage: {
+                        'tanja' : "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://tanja24.mcdn.ma/static/uploads/2019/06/logsotanja24-300png.png')",
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
 <body class="bg-gray-800 font-sans leading-normal tracking-normal">

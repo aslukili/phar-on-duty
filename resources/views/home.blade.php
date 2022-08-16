@@ -18,27 +18,29 @@
     <main>
 {{--        @include('partials._hero')--}}
         <section class="container mx-auto" id="gard-pharmacies">
-            <div class="text-right">
+            <div class="pr-5 text-right">
                 <h1 class=" font-bold text-green-900 text-xl">
                     صيدليات الحراسة بمدينة طنجة
                 </h1>
                 <p>
-                    ليوم <span id="arabicDate"></span>
+                    ليوم
+                    <span id="arabicDate"></span>
                 </p>
             </div>
             <div class="">
                 <div class="grid grid-cols-2">
-                    <div onclick="displayNightPharmacies()" id="night" class="bg-gray-100 border-x-4 border-t-4  border-sky-500  cursor-pointer  text-center">
-                        <p>ليلا</p>
+                    <div onclick="displayNightPharmacies()" id="night" class="bg-gray-300  border-b-4 border-blue-400 cursor-pointer text-center">
+                        <p class="text-lg font-bold text-blue-700 hover:underline">ليلا</p>
                     </div>
-                    <div onclick="displayDayPharmacies()" id="day" class="bg-gray-300  border-b-4 border-sky-500 cursor-pointer text-center">
-                        <p>نهارا</p>
+                    <div onclick="displayDayPharmacies()" id="day" class=" bg-gray-100 border-x-4 border-t-4  border-blue-400  cursor-pointer  text-center">
+                        <p class="text-lg font-bold text-blue-700 hover:underline">نهارا</p>
                     </div>
                 </div>
-                <div id="nightPharmacies" class="border-x-4 border-b-4 border-sky-500 bg-gray-100">
-                    <p class="text-right">
+                <div id="nightPharmacies" style="display: none" class="border-x-4 border-b-4 border-blue-400 bg-gray-100">
+                    <p class="pr-3 text-right ">
                         من 8:30 مساء إلى 9:30 صباحا لليوم الموالي
                     </p>
+
                     <div   class="mt-5 md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
                         @unless(count($nightPharmacies) == 0)
                             @foreach($nightPharmacies as $pharmacy)
@@ -52,16 +54,30 @@
                     </div>
                 </div>
 
-                <div id="dayPharmacies" style="display: none" class="border-x-4 border-b-4 border-sky-500 bg-gray-100">
-                    <p class="text-right">
-                        من 13:30 إلى 16:30
+                <div id="dayPharmacies"  class="border-x-4 border-b-4 border-blue-400 bg-gray-100">
+                    <p class="pr-3 text-right">
+                        من <span>
+
+                            <?php
+                                if (isset($dayPharmacies[0]->open_time)){
+                                    echo date('H:i', strtotime($dayPharmacies[0]->open_time));
+                                }
+                                ?>
+                        </span> إلى
+                        <span>
+                            <?php
+                                if (isset($dayPharmacies[0]->close_time)) {
+                                    echo date('H:i', strtotime($dayPharmacies[0]->close_time));
+                                }
+                                ?>
+                        </span>
                     </p>
                     <div   class="mt-5 md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
                         @unless(count($dayPharmacies) == 0)
                             @foreach($dayPharmacies as $pharmacy)
-                                @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
+{{--                                @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))--}}
                                     <x-pharmacy-card :pharmacy="$pharmacy"/>
-                                @endif
+{{--                                @endif--}}
                             @endforeach
                         @else
                             <p class="text-lg text-red-500">Les pharmacies de garde d'aujourd'hui n'ont pas encore été publiées, veuillez visiter le site après midi</p>
