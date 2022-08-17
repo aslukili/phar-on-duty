@@ -28,32 +28,14 @@
             </div>
             <div class="">
                 <div class="grid grid-cols-2">
-                    <div onclick="displayNightPharmacies()" id="night" class="bg-gray-300  border-b-4 border-blue-400 cursor-pointer text-center">
-                        <p class="text-lg font-bold text-blue-700 hover:underline">ليلا</p>
-                    </div>
-                    <div onclick="displayDayPharmacies()" id="day" class=" bg-gray-100 border-x-4 border-t-4  border-blue-400  cursor-pointer  text-center">
+                    <div onclick="displayDayPharmacies()" id="day" class="bg-gray-300  border-b-4  cursor-pointer text-center">
                         <p class="text-lg font-bold text-blue-700 hover:underline">نهارا</p>
                     </div>
-                </div>
-                <div id="nightPharmacies" style="display: none" class="border-x-4 border-b-4 border-blue-400 bg-gray-100">
-                    <p class="pr-3 text-right ">
-                        من 8:30 مساء إلى 9:30 صباحا لليوم الموالي
-                    </p>
-
-                    <div   class="mt-5 md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
-                        @unless(count($nightPharmacies) == 0)
-                            @foreach($nightPharmacies as $pharmacy)
-                                @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
-                                    <x-pharmacy-card :pharmacy="$pharmacy"/>
-                                @endif
-                            @endforeach
-                        @else
-                            <p class="text-lg text-red-500">Les pharmacies de garde d'aujourd'hui n'ont pas encore été publiées, veuillez visiter le site après midi</p>
-                        @endunless
+                    <div onclick="displayNightPharmacies()" id="night" class="bg-gray-100 border-x-4 border-t-4    cursor-pointer  text-center">
+                        <p class="text-lg font-bold text-blue-700 hover:underline">ليلا</p>
                     </div>
                 </div>
-
-                <div id="dayPharmacies"  class="border-x-4 border-b-4 border-blue-400 bg-gray-100">
+                <div id="dayPharmacies" style="display: none"  class="border-x-4 border-b-4  bg-white">
                     <p class="pr-3 text-right">
                         من <span>
 
@@ -77,6 +59,23 @@
 {{--                                @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))--}}
                                     <x-pharmacy-card :pharmacy="$pharmacy"/>
 {{--                                @endif--}}
+                            @endforeach
+                        @else
+                            <p class="text-lg text-red-500">Les pharmacies de garde d'aujourd'hui n'ont pas encore été publiées, veuillez visiter le site après midi</p>
+                        @endunless
+                    </div>
+                </div>
+                <div id="nightPharmacies" class="border-x-4 border-b-4  bg-white">
+                    <p class="pr-3 text-right ">
+                        من 8:30 مساء إلى 9:30 صباحا لليوم الموالي
+                    </p>
+
+                    <div   class="mt-5 md:grid md:grid-cols-2 xl:grid-cols-3 gap-4 space-y-4 md:space-y-0 mx-4 mb-8">
+                        @unless(count($nightPharmacies) == 0)
+                            @foreach($nightPharmacies as $pharmacy)
+                                @if(strtotime($pharmacy->close_time) > time() && time() > (strtotime($pharmacy->close_time) - (60*60*24)))
+                                    <x-pharmacy-card :pharmacy="$pharmacy"/>
+                                @endif
                             @endforeach
                         @else
                             <p class="text-lg text-red-500">Les pharmacies de garde d'aujourd'hui n'ont pas encore été publiées, veuillez visiter le site après midi</p>

@@ -26,10 +26,14 @@ Route::get('/register', function (){
 
 Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'register'])->name('register');
 Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
+Route::get('/logout', function (){
+    \Illuminate\Support\Facades\Auth::logout();
+    return redirect('/login');
+});
 
 Route::group(['middleware' => 'auth'],function () {
+    Route::get('/profile', [\App\Http\Controllers\UserController::class, 'profile']);
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-
 
 //users
     Route::resource('/users',\App\Http\Controllers\UserController::class)->middleware('is_admin');
@@ -55,16 +59,11 @@ Route::group(['middleware' => 'auth'],function () {
     Route::delete('/pharmacie-de-gard/{guardPharmacy}', [\App\Http\Controllers\GuardPharmacyController::class, 'destroy']);
     //delete all records from table
     Route::get('/pharmacie-de-gard/delete-all', [\App\Http\Controllers\GuardPharmacyController::class, 'delete']);
-
-
 });
 
 
-
 //getting visitor location:
-Route::get('/user',[\App\Http\Controllers\UserLocationController::class,'user']);
-
-
+//Route::get('/user',[\App\Http\Controllers\UserLocationController::class,'user']);
 
 
 Route::get('/', [\App\Http\Controllers\SiteController::class, 'fromRoute'])->name('/call.from');

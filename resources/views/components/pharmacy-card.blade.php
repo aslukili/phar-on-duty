@@ -1,6 +1,6 @@
 @props(['pharmacy'])
 
-<div class="cursor-pointer border border-lg border-gray-300 shadow-lg rounded mt-5 lg:mt-0 bg-yellow-50" >
+<div class="cursor-pointer border border-lg border-gray-300 shadow-lg rounded mt-5 lg:mt-0" style="background-color: #FFF5DF" >
     <div class="flex" >
         <div class="order-2 flex items-center">
             <img
@@ -10,7 +10,7 @@
             />
         </div>
 
-        <div class=" pt-1.5 pl-3 pb-1.5 pr-3 md:pr-0 md:pl-1.5 flex-grow bg-no-repeat bg-cover bg-center" style="background-image:linear-gradient(rgba(255, 246, 222, 0.9), rgba(255, 246, 222, 0.9)), url(https://tanja24.mcdn.ma/static/uploads/2019/06/logsotanja24-300png.png)">
+        <div class=" pt-1.5 pl-3 pb-1.5 pr-3 md:pr-0 md:pl-1.5 flex-grow bg-no-repeat bg-cover bg-center" style="background-image: url('{{asset('/images/logotanja24.jpg')}}')">
             <h3 class="text-right font-bold text-green-700 text-md xl:text-lg">
                 {{$pharmacy->pharmacy->name_ar}}
             </h3>

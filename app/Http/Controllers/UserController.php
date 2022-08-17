@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    //first sever methods for resources option; then there is profile method
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +21,7 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index',[
-            'title' => 'adminis de cities',
+            'title' => 'admins de cities',
             'users' => User::latest()->filter(\request(['search']))->paginate(8),
             'authUser' => Auth::user()
         ]);
@@ -127,5 +129,12 @@ class UserController extends Controller
     {
         $User->delete();
         return redirect('/users');
+    }
+
+    public function profile(User $user)
+    {
+        return view('profile', [
+           'authUser' => Auth::user(),
+        ]);
     }
 }
