@@ -21,8 +21,9 @@ class SiteController extends Controller
     {
         return view('home',[
             'title' => 'pharmcien de guard',
-            'nightPharmacies' => GuardPharmacy::whereDate('open_time', '=', Carbon::today()->toDateString())
-            ->where([
+            'nightPharmacies' => GuardPharmacy::whereDate('close_time', '=', Carbon::today()->toDateString())
+                ->orWhereDate('close_time', '=', Carbon::tomorrow()->toDateString())
+                ->where([
                 ['city_name_fk', 'like', '%'.request('city').'%'],
                 ['open_time', 'like', '%20:30%'],
             ])->get(),
