@@ -19,19 +19,17 @@ class SiteController extends Controller
 
     public function index()
     {
+        $nightPharmacies = GuardPharmacy::where('open_time', 'like', '%20:30%')
+            ->whereDate('close_time', '=', Carbon::today()->toDateString())
+            ->orWhereDate('close_time', '=', Carbon::tomorrow()->toDateString())
+            ->where('city_name_fk', 'like', '%'.request('city').'%')
+            ->get();
         return view('home',[
             'title' => 'pharmcien de guard',
-            'nightPharmacies' => GuardPharmacy::whereDate('close_time', '=', Carbon::today()->toDateString())
-                ->orWhereDate('close_time', '=', Carbon::tomorrow()->toDateString())
-                ->where([
-                ['city_name_fk', 'like', '%'.request('city').'%'],
-                ['open_time', 'like', '%20:30%'],
-            ])->get(),
-            'dayPharmacies' => GuardPharmacy::whereDate('open_time', '=', Carbon::today()->toDateString())
-            ->where([
-                ['city_name_fk', 'like', '%'.request('city').'%'],
-                ['open_time', 'not like', '%20:30%']
-            ])->get(),
+            'nightPharmacies' => $nightPharmacies,
+            'dayPharmacies' => GuardPharmacy::where('open_time', 'not like', '%20:30%')
+            ->whereDate('open_time', '=', Carbon::today()->toDateString())
+            ->where('city_name_fk', 'like', '%'.request('city').'%')->get(),
 //            'pharmacies' => DB::table('guard_pharmacies')->where('city_name_fk', 'like', '%'.request('city').'%')->get(),
 //            'pharmacies' => GuardPharmacy::latest()->filter(\request(['city']))->paginate(16),
             'cities' => City::all()->sortBy('name'),
