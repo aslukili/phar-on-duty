@@ -38,7 +38,6 @@ Route::group(['middleware' => 'auth'],function () {
 //users
     Route::resource('/users',\App\Http\Controllers\UserController::class)->middleware('is_admin');
 
-
 //cities
     Route::resource('/cities', \App\Http\Controllers\CityController::class)->middleware('is_admin');
 

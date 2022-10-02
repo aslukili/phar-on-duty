@@ -88,6 +88,31 @@
 
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
     <script>
+        // display more info in a pharmcy card
+        const iframes = document.getElementsByTagName('iframe');
+
+        //function to display more info:
+        function displayMoreInfo(pharmacyId){
+            for (let i = 0; i < iframes.length; i++){
+                iframes[i].width = "100%"
+                iframes[i].height = "350px"
+            }
+            const selectedDiv = document.getElementById(pharmacyId);
+            const btnSelectedDiv = document.getElementById('btn'.concat(pharmacyId));
+
+            if (selectedDiv.style.display === 'none'){
+                btnSelectedDiv.innerHTML = '<i class="fa-solid fa-angles-up"></i>' + ' ' +
+                    'أقل'
+                selectedDiv.style.display = "block";
+            } else if (selectedDiv.style.display === 'block'){
+                btnSelectedDiv.innerHTML = '<i class="fa-solid fa-angles-down"></i>' + ' ' +
+                    'المزيد'
+                selectedDiv.style.display = 'none';
+            }
+        }
+
+
+
         let date = new Date();
         let months = ["يناير", "فبراير", "مارس", "أبريل", "ماي", "يونيو",
             "يوليوز", "غشت", "شتنبر", "أكتوبر", "نونبر", "دجنبر"
@@ -105,7 +130,6 @@
         // const dayButton = document.getElementById('day');
 
         function displayDayPharmacies() {
-            // TODO
             night.style.display = "none";
             day.style.removeProperty('display');
             document.getElementById("day").classList.remove("bg-gray-300", "border-b-4")
@@ -118,7 +142,6 @@
         }
 
         function displayNightPharmacies() {
-            // TODO
             day.style.display = "none";
             night.style.removeProperty('display')
 
